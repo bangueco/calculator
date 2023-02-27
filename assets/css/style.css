@@ -17,3 +17,23 @@
     width: 350px;
     border: 1px solid black;
 }
+
+.result-container {
+    margin: 10px;
+    border: 1px solid black;
+}
+
+#recentResult {
+    overflow: scroll;
+    text-align: right;
+    height: 27px;
+}
+
+#currentResult {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 70px;
+    border: 1px solid red;
+    font-size: 30px;
+}
