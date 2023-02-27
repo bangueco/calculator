@@ -39,6 +39,10 @@
 }
 
 .buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
     margin: 10px;
 }
 
@@ -48,5 +52,6 @@
 
 .buttons-row > button {
     font-size: 20px;
-    padding: 10px 20px;
+    width: 70px;
+    height: 50px;
 }
