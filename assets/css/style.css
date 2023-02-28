@@ -47,7 +47,11 @@
 }
 
 .buttons-row {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    gap: 10px;
+    border: 2px solid red;
 }
 
 .buttons-row > button {
