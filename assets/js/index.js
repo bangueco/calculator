@@ -16,84 +16,41 @@ buttons.forEach(button => {
     });
 });
 
-let enableAddingNumbers = false;
-let enableSubtractingNumbers = false;
-let enableMultiplyingNumbers = false;
-let enableDividingNumbers = false;
-
-add.addEventListener('click', () => operator('add'));
-sub.addEventListener('click', () => operator('sub'));
-multiply.addEventListener('click', () => operator('multiply'));
-divide.addEventListener('click', () => operator('divide'));
-calculate.addEventListener('click', () => {
+const pushDataToArray = function() {
     dataCollector.push(parseInt(currentResult.textContent));
     while(currentResult.firstChild) {
         currentResult.removeChild(currentResult.lastChild);
-    };
+    }
+}
 
-    if (enableAddingNumbers === true) {
-        calculateValues('sum');
-        enableAddingNumbers = false;
-        shiftValueFromArray();
-    } else if (enableSubtractingNumbers === true) {
-        calculateValues('difference');
-        enableSubtractingNumbers = false;
-        shiftValueFromArray();
-    } else if (enableMultiplyingNumbers = true) {
-        calculateValues('product');
-        enableMultiplyingNumbers = false;
-        shiftValueFromArray();
-    } else if (enableDividingNumbers = true) {
-        calculateValues('quotient');
-        enableDividingNumbers = false;
-        shiftValueFromArray();
+add.addEventListener('click', () => {
+    pushDataToArray();
+    if (dataCollector.length == 2) {
+        sum();
+        removeDataFromArray();
     }
 });
 
-function operator(operator) {
-    if (operator === 'add' || operator === 'sub' || operator === 'multiply' || operator === 'divide') {
-        dataCollector.push(parseInt(currentResult.textContent));
-        while(currentResult.firstChild) {
-            currentResult.removeChild(currentResult.lastChild);
-        }
-    }
+calculate.addEventListener('click', () => {
+    pushDataToArray();
+    sum();
+    removeDataFromArray();
+    calculateData();
+})
 
-    if (operator === 'add') enableAddingNumbers = true;
-    if (operator === 'sub') enableSubtractingNumbers = true;
-    if (operator === 'multiply') enableMultiplyingNumbers = true;
-    if (operator === 'divide') enableDividingNumbers = true;
+function sum() {
+    dataCollector.reduce((x, y) => {
+        dataCollector.push(x + y);
+    });
 }
 
-function calculateValues(operator) {
-    if (operator === 'sum') {
-        dataCollector.reduce((num1, num2) => {
-            let total = num1 + num2;
-            currentResult.textContent = total;
-            dataCollector.push(total);
-        });
-    } else if (operator === 'difference') {
-        dataCollector.reduce((num1, num2) => {
-            let total = num1 - num2;
-            currentResult.textContent = total;
-            dataCollector.push(total);
-        });
-    } else if (operator === 'product') {
-        dataCollector.reduce((num1, num2) => {
-            let total = num1 * num2;
-            currentResult.textContent = total;
-            dataCollector.push(total);
-        });
-    } else if (operator === 'quotient') {
-        dataCollector.reduce((num1, num2) => {
-            let total = num1 / num2;
-            currentResult.textContent = total;
-            dataCollector.push(total);
-        });
-    }
+function calculateData() {
+    currentResult.textContent = dataCollector[dataCollector.length - 1];
+    dataCollector.shift();
 }
 
-function shiftValueFromArray() {
-    for (let x = 0; x <= 2; x++) {
-        dataCollector.shift();
+function removeDataFromArray() {
+    for (x = 1; x < 3; x++) {
+        dataCollector.shift()
     }
 }
