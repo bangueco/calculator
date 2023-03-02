@@ -34,15 +34,19 @@ calculate.addEventListener('click', () => {
     if (enableAddingNumbers === true) {
         calculateValues('sum');
         enableAddingNumbers = false;
+        shiftValueFromArray();
     } else if (enableSubtractingNumbers === true) {
         calculateValues('difference');
         enableSubtractingNumbers = false;
+        shiftValueFromArray();
     } else if (enableMultiplyingNumbers = true) {
         calculateValues('product');
         enableMultiplyingNumbers = false;
+        shiftValueFromArray();
     } else if (enableDividingNumbers = true) {
         calculateValues('quotient');
         enableDividingNumbers = false;
+        shiftValueFromArray();
     }
 });
 
@@ -65,21 +69,31 @@ function calculateValues(operator) {
         dataCollector.reduce((num1, num2) => {
             let total = num1 + num2;
             currentResult.textContent = total;
+            dataCollector.push(total);
         });
     } else if (operator === 'difference') {
         dataCollector.reduce((num1, num2) => {
             let total = num1 - num2;
             currentResult.textContent = total;
+            dataCollector.push(total);
         });
     } else if (operator === 'product') {
         dataCollector.reduce((num1, num2) => {
             let total = num1 * num2;
             currentResult.textContent = total;
+            dataCollector.push(total);
         });
     } else if (operator === 'quotient') {
         dataCollector.reduce((num1, num2) => {
             let total = num1 / num2;
             currentResult.textContent = total;
+            dataCollector.push(total);
         });
+    }
+}
+
+function shiftValueFromArray() {
+    for (let x = 0; x <= 2; x++) {
+        dataCollector.shift();
     }
 }
