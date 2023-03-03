@@ -1,6 +1,8 @@
 const buttons = document.querySelectorAll(`button[data-btn]`);
 const currentResult = document.querySelector("#currentResult");
 
+const clear = document.querySelector("#clear");
+
 const add = document.querySelector("#sum");
 const sub = document.querySelector("#difference");
 const multiply = document.querySelector("#product");
@@ -23,6 +25,8 @@ const pushDataToArray = function() {
         currentResult.removeChild(currentResult.lastChild);
     }
 }
+
+clear.addEventListener('click', clearResult);
 
 add.addEventListener('click', () => {
     if(currentOperator === 'minus') recentOperator = 'minus';
@@ -105,6 +109,12 @@ calculate.addEventListener('click', () => {
     removeDataFromArray();
     calculateData();
 })
+
+function clearResult() {
+    while(currentResult.firstChild) {
+        currentResult.removeChild(currentResult.lastChild);
+    }
+}
 
 function sum() {
     dataCollector.reduce((x, y) => {
