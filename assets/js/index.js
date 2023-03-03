@@ -26,20 +26,42 @@ const pushDataToArray = function() {
 
 add.addEventListener('click', () => {
     if(currentOperator === 'minus') recentOperator = 'minus';
+    if(currentOperator === 'times') recentOperator = 'times';
     currentOperator = 'plus';
     pushDataToArray();
     if (dataCollector.length == 2 && recentOperator === 'minus') {
         difference();
+        removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'times') {
+        product();
         removeDataFromArray();
     }
 });
 
 sub.addEventListener('click', () => {
     if(currentOperator === 'plus') recentOperator = 'plus';
+    if(currentOperator === 'times') recentOperator = 'times';
     currentOperator = 'minus';
     pushDataToArray();
     if (dataCollector.length == 2 && recentOperator === 'plus') {
         sum();
+        removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'times') {
+        product();
+        removeDataFromArray();
+    }
+});
+
+multiply.addEventListener('click', () => {
+    if(currentOperator === 'plus') recentOperator = 'plus';
+    if(currentOperator === 'minus') recentOperator = 'minus';
+    currentOperator = 'times';
+    pushDataToArray();
+    if (dataCollector.length == 2 && recentOperator === 'plus') {
+        sum();
+        removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'minus') {
+        difference();
         removeDataFromArray();
     }
 });
@@ -48,6 +70,7 @@ calculate.addEventListener('click', () => {
     pushDataToArray();
     if(currentOperator === 'plus') sum();
     if(currentOperator === 'minus') difference();
+    if(currentOperator === 'times') product();
     removeDataFromArray();
     calculateData();
 })
@@ -61,6 +84,12 @@ function sum() {
 function difference() {
     dataCollector.reduce((x, y) => {
         dataCollector.push(x - y);
+    });
+}
+
+function product() {
+    dataCollector.reduce((x, y) => {
+        dataCollector.push(x * y);
     });
 }
 
