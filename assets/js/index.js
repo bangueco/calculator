@@ -8,6 +8,7 @@ const divide = document.querySelector("#quotient");
 const calculate = document.querySelector("#calculate");
 
 const dataCollector = [];
+let recentOperator, currentOperator;
 
 buttons.forEach(button => {
     button.addEventListener("click", (e) => {
@@ -24,8 +25,20 @@ const pushDataToArray = function() {
 }
 
 add.addEventListener('click', () => {
+    if(currentOperator === 'minus') recentOperator = 'minus';
+    currentOperator = 'plus';
     pushDataToArray();
-    if (dataCollector.length == 2) {
+    if (dataCollector.length == 2 && recentOperator === 'minus') {
+        difference();
+        removeDataFromArray();
+    }
+});
+
+sub.addEventListener('click', () => {
+    if(currentOperator === 'plus') recentOperator = 'plus';
+    currentOperator = 'minus';
+    pushDataToArray();
+    if (dataCollector.length == 2 && recentOperator === 'plus') {
         sum();
         removeDataFromArray();
     }
@@ -33,7 +46,8 @@ add.addEventListener('click', () => {
 
 calculate.addEventListener('click', () => {
     pushDataToArray();
-    sum();
+    if(currentOperator === 'plus') sum();
+    if(currentOperator === 'minus') difference();
     removeDataFromArray();
     calculateData();
 })
@@ -41,6 +55,12 @@ calculate.addEventListener('click', () => {
 function sum() {
     dataCollector.reduce((x, y) => {
         dataCollector.push(x + y);
+    });
+}
+
+function difference() {
+    dataCollector.reduce((x, y) => {
+        dataCollector.push(x - y);
     });
 }
 
