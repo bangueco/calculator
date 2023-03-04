@@ -2,6 +2,7 @@ const buttons = document.querySelectorAll(`button[data-btn]`);
 const currentResult = document.querySelector("#currentResult");
 
 const clear = document.querySelector("#clear");
+const deleteResult = document.querySelector("#delete");
 
 const modulo = document.querySelector("#modulo");
 const add = document.querySelector("#sum");
@@ -28,6 +29,7 @@ const pushDataToArray = function() {
 }
 
 clear.addEventListener('click', clearResult);
+deleteResult.addEventListener('click', del);
 
 add.addEventListener('click', () => {
     if(currentOperator === 'minus') recentOperator = 'minus';
@@ -155,6 +157,11 @@ function clearResult() {
     while(currentResult.firstChild) {
         currentResult.removeChild(currentResult.lastChild);
     }
+}
+
+function del() {
+    if (currentResult.textContent.length == 0) return;
+    currentResult.textContent = currentResult.textContent.slice(0, -1);
 }
 
 function sum() {
