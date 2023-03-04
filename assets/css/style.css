@@ -8,7 +8,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
     height: 100vh;
 }
 
@@ -34,7 +33,6 @@
     justify-content: flex-end;
     align-items: flex-end;
     height: 70px;
-    border: 1px solid red;
     font-size: 30px;
 }
 
@@ -51,7 +49,6 @@
     align-items: center;
     padding: 5px;
     gap: 10px;
-    border: 2px solid red;
 }
 
 .buttons-row > button {
