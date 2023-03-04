@@ -22,7 +22,7 @@ buttons.forEach(button => {
 });
 
 const pushDataToArray = function() {
-    dataCollector.push(parseInt(currentResult.textContent));
+    dataCollector.push(parseFloat(currentResult.textContent));
     while(currentResult.firstChild) {
         currentResult.removeChild(currentResult.lastChild);
     }
