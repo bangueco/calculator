@@ -3,6 +3,7 @@ const currentResult = document.querySelector("#currentResult");
 
 const clear = document.querySelector("#clear");
 
+const modulo = document.querySelector("#modulo");
 const add = document.querySelector("#sum");
 const sub = document.querySelector("#difference");
 const multiply = document.querySelector("#product");
@@ -32,6 +33,7 @@ add.addEventListener('click', () => {
     if(currentOperator === 'minus') recentOperator = 'minus';
     if(currentOperator === 'times') recentOperator = 'times';
     if(currentOperator === 'divide') recentOperator = 'divide';
+    if(currentOperator === 'modulo') recentOperator = 'modulo';
     currentOperator = 'plus';
     pushDataToArray();
     if (dataCollector.length == 2 && recentOperator === 'minus') {
@@ -43,6 +45,9 @@ add.addEventListener('click', () => {
     } else if (dataCollector.length == 2 && recentOperator === 'divide') {
         quotient();
         removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'modulo') {
+        mod();
+        removeDataFromArray();
     }
 });
 
@@ -50,6 +55,7 @@ sub.addEventListener('click', () => {
     if(currentOperator === 'plus') recentOperator = 'plus';
     if(currentOperator === 'times') recentOperator = 'times';
     if(currentOperator === 'divide') recentOperator = 'divide';
+    if(currentOperator === 'modulo') recentOperator = 'modulo';
     currentOperator = 'minus';
     pushDataToArray();
     if (dataCollector.length == 2 && recentOperator === 'plus') {
@@ -61,13 +67,17 @@ sub.addEventListener('click', () => {
     } else if (dataCollector.length == 2 && recentOperator === 'divide') {
         quotient();
         removeDataFromArray();
-    } 
+    } else if (dataCollector.length == 2 && recentOperator === 'modulo') {
+        mod();
+        removeDataFromArray();
+    }
 });
 
 multiply.addEventListener('click', () => {
     if(currentOperator === 'plus') recentOperator = 'plus';
     if(currentOperator === 'minus') recentOperator = 'minus';
     if(currentOperator === 'divide') recentOperator = 'divide';
+    if(currentOperator === 'modulo') recentOperator = 'modulo';
     currentOperator = 'times';
     pushDataToArray();
     if (dataCollector.length == 2 && recentOperator === 'plus') {
@@ -79,6 +89,9 @@ multiply.addEventListener('click', () => {
     } else if (dataCollector.length == 2 && recentOperator === 'divide') {
         quotient();
         removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'modulo') {
+        mod();
+        removeDataFromArray();
     }
 });
 
@@ -86,6 +99,7 @@ divide.addEventListener('click', () => {
     if(currentOperator === 'plus') recentOperator = 'plus';
     if(currentOperator === 'minus') recentOperator = 'minus';
     if(currentOperator === 'times') recentOperator = 'times';
+    if(currentOperator === 'modulo') recentOperator = 'modulo';
     currentOperator = 'divide';
     pushDataToArray();
     if (dataCollector.length == 2 && recentOperator === 'plus') {
@@ -97,6 +111,31 @@ divide.addEventListener('click', () => {
     } else if (dataCollector.length == 2 && recentOperator === 'times') {
         product();
         removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'modulo') {
+        mod();
+        removeDataFromArray();
+    }
+});
+
+modulo.addEventListener('click', () => {
+    if(currentOperator === 'plus') recentOperator = 'plus';
+    if(currentOperator === 'minus') recentOperator = 'minus';
+    if(currentOperator === 'times') recentOperator = 'times';
+    if(currentOperator === 'divide') recentOperator = 'divide';
+    currentOperator = 'modulo';
+    pushDataToArray();
+    if (dataCollector.length == 2 && recentOperator === 'plus') {
+        sum();
+        removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'minus') {
+        difference();
+        removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'times') {
+        product();
+        removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'divide') {
+        quotient();
+        removeDataFromArray();
     }
 });
 
@@ -106,6 +145,7 @@ calculate.addEventListener('click', () => {
     if(currentOperator === 'minus') difference();
     if(currentOperator === 'times') product();
     if(currentOperator === 'divide') quotient();
+    if(currentOperator === 'modulo') mod();
     removeDataFromArray();
     calculateData();
 })
@@ -137,6 +177,12 @@ function product() {
 function quotient() {
     dataCollector.reduce((x, y) => {
         dataCollector.push(x / y);
+    });
+}
+
+function mod() {
+    dataCollector.reduce((x, y) => {
+        dataCollector.push(x % y);
     });
 }
 
