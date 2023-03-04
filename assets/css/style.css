@@ -29,7 +29,6 @@
 }
 
 #recentResult {
-    overflow: scroll;
     text-align: right;
     height: 30px;
 }
