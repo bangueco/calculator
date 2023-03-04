@@ -140,6 +140,7 @@ modulo.addEventListener('click', () => {
 });
 
 calculate.addEventListener('click', () => {
+    if(dataCollector.length == 0) return;
     pushDataToArray();
     if(currentOperator === 'plus') sum();
     if(currentOperator === 'minus') difference();
