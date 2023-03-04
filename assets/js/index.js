@@ -38,7 +38,10 @@ add.addEventListener('click', () => {
     if(currentOperator === 'modulo') recentOperator = 'modulo';
     currentOperator = 'plus';
     pushDataToArray();
-    if (dataCollector.length == 2 && recentOperator === 'minus') {
+    if (dataCollector.length == 2 && currentOperator === 'plus') {
+        sum();
+        removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'minus') {
         difference();
         removeDataFromArray();
     } else if (dataCollector.length == 2 && recentOperator === 'times') {
@@ -60,7 +63,10 @@ sub.addEventListener('click', () => {
     if(currentOperator === 'modulo') recentOperator = 'modulo';
     currentOperator = 'minus';
     pushDataToArray();
-    if (dataCollector.length == 2 && recentOperator === 'plus') {
+    if (dataCollector.length == 2 && currentOperator === 'minus') {
+        difference();
+        removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'plus') {
         sum();
         removeDataFromArray();
     } else if (dataCollector.length == 2 && recentOperator === 'times') {
@@ -82,7 +88,10 @@ multiply.addEventListener('click', () => {
     if(currentOperator === 'modulo') recentOperator = 'modulo';
     currentOperator = 'times';
     pushDataToArray();
-    if (dataCollector.length == 2 && recentOperator === 'plus') {
+    if (dataCollector.length == 2 && currentOperator === 'times') {
+        product();
+        removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'plus') {
         sum();
         removeDataFromArray();
     } else if (dataCollector.length == 2 && recentOperator === 'minus') {
@@ -104,7 +113,10 @@ divide.addEventListener('click', () => {
     if(currentOperator === 'modulo') recentOperator = 'modulo';
     currentOperator = 'divide';
     pushDataToArray();
-    if (dataCollector.length == 2 && recentOperator === 'plus') {
+    if (dataCollector.length == 2 && currentOperator === 'divide') {
+        product();
+        removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'plus') {
         sum();
         removeDataFromArray();
     } else if (dataCollector.length == 2 && recentOperator === 'minus') {
@@ -126,7 +138,10 @@ modulo.addEventListener('click', () => {
     if(currentOperator === 'divide') recentOperator = 'divide';
     currentOperator = 'modulo';
     pushDataToArray();
-    if (dataCollector.length == 2 && recentOperator === 'plus') {
+    if (dataCollector.length == 2 && currentOperator === 'modulo') {
+        mod();
+        removeDataFromArray();
+    } else if (dataCollector.length == 2 && recentOperator === 'plus') {
         sum();
         removeDataFromArray();
     } else if (dataCollector.length == 2 && recentOperator === 'minus') {
