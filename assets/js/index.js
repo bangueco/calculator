@@ -21,6 +21,26 @@ buttons.forEach(button => {
     });
 });
 
+window.addEventListener("keydown", keyboard);
+
+function keyboard(e) {
+    const keyboard = document.querySelector(`button[data-key="${e.key}"]`);
+    if (!keyboard) return;
+    
+    if (keyboard.dataset.key === '+') evaluateSum();
+    if (keyboard.dataset.key === '-') evaluateDiff();
+    if (keyboard.dataset.key === 'x') evaluateProduct();
+    if (keyboard.dataset.key === '/') evaluateQuotient();
+    if (keyboard.dataset.key === '=') evaluateResult();
+
+    if (keyboard.dataset.key === '+' || keyboard.dataset.key === '-' || 
+    keyboard.dataset.key === 'x' || keyboard.dataset.key === '/' || keyboard.dataset.key === '=') {
+        return;   
+    } else {
+        currentResult.textContent += keyboard.dataset.key;
+    }
+}
+
 const pushDataToArray = function() {
     dataCollector.push(parseFloat(currentResult.textContent));
     while(currentResult.firstChild) {
@@ -31,142 +51,17 @@ const pushDataToArray = function() {
 clear.addEventListener('click', clearResult);
 deleteResult.addEventListener('click', del);
 
-add.addEventListener('click', () => {
-    if (currentOperator === 'minus') recentOperator = 'minus';
-    if (currentOperator === 'times') recentOperator = 'times';
-    if (currentOperator === 'divide') recentOperator = 'divide';
-    if (currentOperator === 'modulo') recentOperator = 'modulo';
-    currentOperator = 'plus';
-    pushDataToArray();
+add.addEventListener('click', evaluateSum);
 
-    if (dataCollector.length == 2 && currentOperator === 'plus' && recentOperator === undefined) {
-        sum();
-    } else if (dataCollector.length == 2 && currentOperator === 'plus' && recentOperator === 'minus') {
-        recentOperator = undefined;
-        difference();
-    } else if (dataCollector.length == 2 && currentOperator === 'plus' && recentOperator === 'times') {
-        recentOperator = undefined;
-        product();
-    } else if (dataCollector.length == 2 && currentOperator === 'plus' && recentOperator === 'divide') {
-        recentOperator = undefined;
-        quotient();
-    } else if (dataCollector.length == 2 && currentOperator === 'plus' && recentOperator === 'modulo') {
-        recentOperator = undefined;
-        mod();
-    }
-});
+sub.addEventListener('click', evaluateDiff);
 
-sub.addEventListener('click', () => {
-    if (currentOperator === 'plus') recentOperator = 'plus';
-    if (currentOperator === 'times') recentOperator = 'times';
-    if (currentOperator === 'divide') recentOperator = 'divide';
-    if (currentOperator === 'modulo') recentOperator = 'modulo';
-    currentOperator = 'minus';
-    pushDataToArray();
+multiply.addEventListener('click', evaluateProduct);
 
-    if (dataCollector.length == 2 && currentOperator === 'minus' && recentOperator === undefined) {
-        difference();
-    } else if (dataCollector.length == 2 && currentOperator === 'minus' && recentOperator === 'plus') {
-        recentOperator = undefined;
-        sum();
-    } else if (dataCollector.length == 2 && currentOperator === 'minus' && recentOperator === 'times') {
-        recentOperator = undefined;
-        product();
-    } else if (dataCollector.length == 2 && currentOperator === 'minus' && recentOperator === 'divide') {
-        recentOperator = undefined;
-        quotient();
-    } else if (dataCollector.length == 2 && currentOperator === 'minus' && recentOperator === 'modulo') {
-        recentOperator = undefined;
-        mod();
-    }
-});
+divide.addEventListener('click', evaluateQuotient);
 
-multiply.addEventListener('click', () => {
-    if (currentOperator === 'plus') recentOperator = 'plus';
-    if (currentOperator === 'minus') recentOperator = 'minus';
-    if (currentOperator === 'divide') recentOperator = 'divide';
-    if (currentOperator === 'modulo') recentOperator = 'modulo';
-    currentOperator = 'times';
-    pushDataToArray();
+modulo.addEventListener('click', evaluateModulo);
 
-    if (dataCollector.length == 2 && currentOperator === 'times' && recentOperator === undefined) {
-        product();
-    } else if (dataCollector.length == 2 && currentOperator === 'times' && recentOperator === 'plus') {
-        recentOperator = undefined;
-        sum();
-    } else if (dataCollector.length == 2 && currentOperator === 'times' && recentOperator === 'minus') {
-        recentOperator = undefined;
-        difference();
-    } else if (dataCollector.length == 2 && currentOperator === 'times' && recentOperator === 'divide') {
-        recentOperator = undefined;
-        quotient();
-    } else if (dataCollector.length == 2 && currentOperator === 'times' && recentOperator === 'modulo') {
-        recentOperator = undefined;
-        mod();
-    }
-});
-
-divide.addEventListener('click', () => {
-    if (currentOperator === 'plus') recentOperator = 'plus';
-    if (currentOperator === 'minus') recentOperator = 'minus';
-    if (currentOperator === 'times') recentOperator = 'times';
-    if (currentOperator === 'modulo') recentOperator = 'modulo';
-    currentOperator = 'divide';
-    pushDataToArray();
-
-    if (dataCollector.length == 2 && currentOperator === 'divide' && recentOperator === undefined) {
-        quotient();
-    } else if (dataCollector.length == 2 && currentOperator === 'divide' && recentOperator === 'plus') {
-        recentOperator = undefined;
-        sum();
-    } else if (dataCollector.length == 2 && currentOperator === 'divide' && recentOperator === 'minus') {
-        recentOperator = undefined;
-        difference();
-    } else if (dataCollector.length == 2 && currentOperator === 'divide' && recentOperator === 'times') {
-        recentOperator = undefined;
-        product();
-    } else if (dataCollector.length == 2 && currentOperator === 'divide' && recentOperator === 'modulo') {
-        recentOperator = undefined;
-        mod();
-    }
-});
-
-modulo.addEventListener('click', () => {
-    if (currentOperator === 'plus') recentOperator = 'plus';
-    if (currentOperator === 'minus') recentOperator = 'minus';
-    if (currentOperator === 'times') recentOperator = 'times';
-    if (currentOperator === 'divide') recentOperator = 'divide';
-    currentOperator = 'modulo';
-    pushDataToArray();
-
-    if (dataCollector.length == 2 && currentOperator === 'modulo' && recentOperator === undefined) {
-        mod();
-    } else if (dataCollector.length == 2 && currentOperator === 'modulo' && recentOperator === 'plus') {
-        recentOperator = undefined;
-        sum();
-    } else if (dataCollector.length == 2 && currentOperator === 'modulo' && recentOperator === 'minus') {
-        recentOperator = undefined;
-        difference();
-    } else if (dataCollector.length == 2 && currentOperator === 'modulo' && recentOperator === 'times') {
-        recentOperator = undefined;
-        product();
-    } else if (dataCollector.length == 2 && currentOperator === 'modulo' && recentOperator === 'divide') {
-        recentOperator = undefined;
-        quotient();
-    }
-});
-
-calculate.addEventListener('click', () => {
-    if(dataCollector.length == 0) return;
-    pushDataToArray();
-    if(currentOperator === 'plus') sum();
-    if(currentOperator === 'minus') difference();
-    if(currentOperator === 'times') product();
-    if(currentOperator === 'divide') quotient();
-    if(currentOperator === 'modulo') mod();
-    removeDataFromArray();
-    calculateData();
-})
+calculate.addEventListener('click', evaluateResult);
 
 function clearResult() {
     while(currentResult.firstChild) {
@@ -232,4 +127,141 @@ function removeDataFromArray() {
     while(dataCollector.length >= 2) {
         dataCollector.shift();
     }
+}
+
+function evaluateSum() {
+    if (currentOperator === 'minus') recentOperator = 'minus';
+    if (currentOperator === 'times') recentOperator = 'times';
+    if (currentOperator === 'divide') recentOperator = 'divide';
+    if (currentOperator === 'modulo') recentOperator = 'modulo';
+    currentOperator = 'plus';
+    pushDataToArray();
+
+    if (dataCollector.length == 2 && currentOperator === 'plus' && recentOperator === undefined) {
+        sum();
+    } else if (dataCollector.length == 2 && currentOperator === 'plus' && recentOperator === 'minus') {
+        recentOperator = undefined;
+        difference();
+    } else if (dataCollector.length == 2 && currentOperator === 'plus' && recentOperator === 'times') {
+        recentOperator = undefined;
+        product();
+    } else if (dataCollector.length == 2 && currentOperator === 'plus' && recentOperator === 'divide') {
+        recentOperator = undefined;
+        quotient();
+    } else if (dataCollector.length == 2 && currentOperator === 'plus' && recentOperator === 'modulo') {
+        recentOperator = undefined;
+        mod();
+    }
+}
+
+function evaluateDiff() {
+    if (currentOperator === 'plus') recentOperator = 'plus';
+    if (currentOperator === 'times') recentOperator = 'times';
+    if (currentOperator === 'divide') recentOperator = 'divide';
+    if (currentOperator === 'modulo') recentOperator = 'modulo';
+    currentOperator = 'minus';
+    pushDataToArray();
+
+    if (dataCollector.length == 2 && currentOperator === 'minus' && recentOperator === undefined) {
+        difference();
+    } else if (dataCollector.length == 2 && currentOperator === 'minus' && recentOperator === 'plus') {
+        recentOperator = undefined;
+        sum();
+    } else if (dataCollector.length == 2 && currentOperator === 'minus' && recentOperator === 'times') {
+        recentOperator = undefined;
+        product();
+    } else if (dataCollector.length == 2 && currentOperator === 'minus' && recentOperator === 'divide') {
+        recentOperator = undefined;
+        quotient();
+    } else if (dataCollector.length == 2 && currentOperator === 'minus' && recentOperator === 'modulo') {
+        recentOperator = undefined;
+        mod();
+    }
+}
+
+function evaluateProduct() {
+    if (currentOperator === 'plus') recentOperator = 'plus';
+    if (currentOperator === 'minus') recentOperator = 'minus';
+    if (currentOperator === 'divide') recentOperator = 'divide';
+    if (currentOperator === 'modulo') recentOperator = 'modulo';
+    currentOperator = 'times';
+    pushDataToArray();
+
+    if (dataCollector.length == 2 && currentOperator === 'times' && recentOperator === undefined) {
+        product();
+    } else if (dataCollector.length == 2 && currentOperator === 'times' && recentOperator === 'plus') {
+        recentOperator = undefined;
+        sum();
+    } else if (dataCollector.length == 2 && currentOperator === 'times' && recentOperator === 'minus') {
+        recentOperator = undefined;
+        difference();
+    } else if (dataCollector.length == 2 && currentOperator === 'times' && recentOperator === 'divide') {
+        recentOperator = undefined;
+        quotient();
+    } else if (dataCollector.length == 2 && currentOperator === 'times' && recentOperator === 'modulo') {
+        recentOperator = undefined;
+        mod();
+    }
+}
+
+function evaluateQuotient() {
+    if (currentOperator === 'plus') recentOperator = 'plus';
+    if (currentOperator === 'minus') recentOperator = 'minus';
+    if (currentOperator === 'times') recentOperator = 'times';
+    if (currentOperator === 'modulo') recentOperator = 'modulo';
+    currentOperator = 'divide';
+    pushDataToArray();
+
+    if (dataCollector.length == 2 && currentOperator === 'divide' && recentOperator === undefined) {
+        quotient();
+    } else if (dataCollector.length == 2 && currentOperator === 'divide' && recentOperator === 'plus') {
+        recentOperator = undefined;
+        sum();
+    } else if (dataCollector.length == 2 && currentOperator === 'divide' && recentOperator === 'minus') {
+        recentOperator = undefined;
+        difference();
+    } else if (dataCollector.length == 2 && currentOperator === 'divide' && recentOperator === 'times') {
+        recentOperator = undefined;
+        product();
+    } else if (dataCollector.length == 2 && currentOperator === 'divide' && recentOperator === 'modulo') {
+        recentOperator = undefined;
+        mod();
+    }
+}
+
+function evaluateModulo() {
+    if (currentOperator === 'plus') recentOperator = 'plus';
+    if (currentOperator === 'minus') recentOperator = 'minus';
+    if (currentOperator === 'times') recentOperator = 'times';
+    if (currentOperator === 'divide') recentOperator = 'divide';
+    currentOperator = 'modulo';
+    pushDataToArray();
+
+    if (dataCollector.length == 2 && currentOperator === 'modulo' && recentOperator === undefined) {
+        mod();
+    } else if (dataCollector.length == 2 && currentOperator === 'modulo' && recentOperator === 'plus') {
+        recentOperator = undefined;
+        sum();
+    } else if (dataCollector.length == 2 && currentOperator === 'modulo' && recentOperator === 'minus') {
+        recentOperator = undefined;
+        difference();
+    } else if (dataCollector.length == 2 && currentOperator === 'modulo' && recentOperator === 'times') {
+        recentOperator = undefined;
+        product();
+    } else if (dataCollector.length == 2 && currentOperator === 'modulo' && recentOperator === 'divide') {
+        recentOperator = undefined;
+        quotient();
+    }
+}
+
+function evaluateResult() {
+    if(dataCollector.length == 0) return;
+    pushDataToArray();
+    if(currentOperator === 'plus') sum();
+    if(currentOperator === 'minus') difference();
+    if(currentOperator === 'times') product();
+    if(currentOperator === 'divide') quotient();
+    if(currentOperator === 'modulo') mod();
+    removeDataFromArray();
+    calculateData();
 }
