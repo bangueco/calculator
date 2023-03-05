@@ -31,10 +31,11 @@ function keyboard(e) {
     if (keyboard.dataset.key === '-') evaluateDiff();
     if (keyboard.dataset.key === 'x') evaluateProduct();
     if (keyboard.dataset.key === '/') evaluateQuotient();
+    if (keyboard.dataset.key === '%') evaluateModulo();
     if (keyboard.dataset.key === '=') evaluateResult();
 
-    if (keyboard.dataset.key === '+' || keyboard.dataset.key === '-' || 
-    keyboard.dataset.key === 'x' || keyboard.dataset.key === '/' || keyboard.dataset.key === '=') {
+    if (keyboard.dataset.key === '+' || keyboard.dataset.key === '-' || keyboard.dataset.key === 'x' || 
+    keyboard.dataset.key === '/' || keyboard.dataset.key === '=' || keyboard.dataset.key === '%') {
         return;   
     } else {
         currentResult.textContent += keyboard.dataset.key;
