@@ -7,6 +7,7 @@
     <title>Calculator</title>
 
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
 </head>
 <body>
     <div class="container">
@@ -17,33 +18,33 @@
             </div>
             <div class="buttons">
                 <div class="buttons-row">
-                    <button id="clear">AC</button>
-                    <button id="delete" data-key="Backspace">DEL</button>
-                    <button id="modulo" data-key="%">%</button>
-                    <button id="quotient" data-key="/">÷</button>
+                    <button class="fa-solid fa-trash" id="clear"></button>
+                    <button class="fa-regular fa-delete-left" id="delete" data-key="Backspace"></button>
+                    <button class="fa-regular fa-percent" id="modulo" data-key="%"></button>
+                    <button class="fa-sharp fa-solid fa-divide" id="quotient" data-key="/"></button>
                 </div>
                 <div class="buttons-row">
                     <button data-btn="7" data-key="7">7</button>
                     <button data-btn="8" data-key="8">8</button>
                     <button data-btn="9" data-key="9">9</button>
-                    <button id="product" data-key="x">x</button>
+                    <button class="fa-sharp fa-solid fa-xmark" id="product" data-key="x"></button>
                 </div>
                 <div class="buttons-row">
                     <button data-btn="4" data-key="4">4</button>
                     <button data-btn="5" data-key="5">5</button>
                     <button data-btn="6" data-key="6">6</button>
-                    <button id="difference" data-key="-">-</button>
+                    <button class="fa-sharp fa-solid fa-minus" id="difference" data-key="-"></button>
                 </div>
                 <div class="buttons-row">
                     <button data-btn="1" data-key="1">1</button>
                     <button data-btn="2" data-key="2">2</button>
                     <button data-btn="3" data-key="3">3</button>
-                    <button id="sum" data-key="+">+</button>
+                    <button class="fa-sharp fa-solid fa-plus" id="sum" data-key="+"></button>
                 </div>
                 <div class="buttons-row">
                     <button data-btn="0" data-key="0">0</button>
                     <button data-btn="." data-key=".">.</button>
-                    <button id="calculate" data-key="=">=</button>
+                    <button class="fa-sharp fa-solid fa-equals" id="calculate" data-key="="></button>
                 </div>
             </div>
         </div>
