@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: rgb(247, 245, 168);
+    background-color: rgb(167, 166, 166);
 }
 
 .calculator-body {
@@ -17,7 +17,7 @@
     width: 350px;
     border: 2px solid black;
     border-radius: 25px;
-    background-color: rgb(194, 194, 194);
+    background-color: rgb(50, 49, 49);
 }
 
 .result-container {
@@ -39,6 +39,7 @@
     align-items: flex-end;
     height: 70px;
     font-size: 30px;
+    font-weight: 800;
 }
 
 .buttons {
@@ -59,26 +60,45 @@
 
 .buttons-row > button {
     font-size: 20px;
+    font-weight: 800;
     width: 70px;
     height: 55px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(222, 221, 221);
     border: 1px solid black;
-    border-radius: 15px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: background-color, opacity 100ms;
+    transition: all, opacity 100ms;
 }
 
 .buttons-row > button#calculate {
     width: 150px;
-    border-radius: 1px;
     font-size: 40px;
-    border-radius: 15px;
+    border-radius: 20px;
+}
+
+.buttons-row > button#clear, button#delete {
+    background-color: rgb(211, 0, 0);
+}
+
+.buttons-row > button#modulo, button#quotient, button#product,
+button#difference, button#sum, button#calculate {
+    background-color: rgb(245, 233, 233);
+}
+
+.buttons-row > button#modulo:hover, button#quotient:hover, button#product:hover,
+button#difference:hover, button#sum:hover {
+    background-color: rgb(255, 125, 18);
+}
+
+.buttons-row > button#calculate:hover {
+    background-color: rgb(10, 255, 10);
 }
 
 .buttons-row > button:hover {
-    background-color: rgb(252, 239, 168);
+    background-color: rgb(16, 135, 255);
 }
 
 .buttons-row > button:active {
     opacity: 0.8;
+    transform: scale(1.05);
 }
