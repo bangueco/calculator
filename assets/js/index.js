@@ -74,6 +74,9 @@ function clearResult() {
     while(dataCollector.length > 0) {
         dataCollector.shift();
     }
+
+    currentOperator = null;
+    recentOperator = null;
 }
 
 function del() {
