@@ -80,6 +80,10 @@
     background-color: rgb(211, 0, 0);
 }
 
+.buttons-row > button#clear:hover, button#delete:hover {
+    background-color: rgb(194, 9, 9);
+}
+
 .buttons-row > button#modulo, button#quotient, button#product,
 button#difference, button#sum, button#calculate {
     background-color: rgb(245, 233, 233);
