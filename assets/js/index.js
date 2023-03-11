@@ -16,7 +16,7 @@ let recentOperator = undefined, currentOperator = undefined;
 
 buttons.forEach(button => {
     button.addEventListener("click", (e) => {
-        if (!e.target.dataset.btn) return;
+        if (currentResult.textContent.includes('.') && e.target.dataset.btn === '.') return;
         currentResult.textContent += e.target.dataset.btn;
         checkIfEmpty();
     });
@@ -41,6 +41,7 @@ function keyboard(e) {
     keyboard.dataset.key === '%' || keyboard.dataset.key === 'Backspace') {
         return;   
     } else {
+        if (currentResult.textContent.includes('.') && keyboard.dataset.key === '.') return;
         currentResult.textContent += keyboard.dataset.key;
     }
 
