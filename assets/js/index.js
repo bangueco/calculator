@@ -18,6 +18,7 @@ buttons.forEach(button => {
     button.addEventListener("click", (e) => {
         if (!e.target.dataset.btn) return;
         currentResult.textContent += e.target.dataset.btn;
+        checkIfEmpty();
     });
 });
 
@@ -42,6 +43,8 @@ function keyboard(e) {
     } else {
         currentResult.textContent += keyboard.dataset.key;
     }
+
+    checkIfEmpty();
 }
 
 const pushDataToArray = function() {
@@ -77,11 +80,13 @@ function clearResult() {
 
     currentOperator = undefined;
     recentOperator = undefined;
+    checkIfEmpty();
 }
 
 function del() {
     if (currentResult.textContent.length == 0) return;
     currentResult.textContent = currentResult.textContent.slice(0, -1);
+    checkIfEmpty();
 }
 
 function sum() {
@@ -158,6 +163,8 @@ function evaluateSum() {
         recentOperator = undefined;
         mod();
     }
+
+    checkIfEmpty();
 }
 
 function evaluateDiff() {
@@ -183,6 +190,8 @@ function evaluateDiff() {
         recentOperator = undefined;
         mod();
     }
+
+    checkIfEmpty();
 }
 
 function evaluateProduct() {
@@ -208,6 +217,8 @@ function evaluateProduct() {
         recentOperator = undefined;
         mod();
     }
+
+    checkIfEmpty();
 }
 
 function evaluateQuotient() {
@@ -233,6 +244,8 @@ function evaluateQuotient() {
         recentOperator = undefined;
         mod();
     }
+
+    checkIfEmpty();
 }
 
 function evaluateModulo() {
@@ -258,16 +271,60 @@ function evaluateModulo() {
         recentOperator = undefined;
         quotient();
     }
+
+    checkIfEmpty();
 }
 
 function evaluateResult() {
-    if(dataCollector.length == 0) return;
-    pushDataToArray();
-    if(currentOperator === 'plus') sum();
-    if(currentOperator === 'minus') difference();
-    if(currentOperator === 'times') product();
-    if(currentOperator === 'divide') quotient();
-    if(currentOperator === 'modulo') mod();
-    removeDataFromArray();
-    calculateData();
+    if(dataCollector.length == 0) {
+        alert("Please add some number with operational buttons before hitting me");
+        return;
+    } else {
+        if (currentResult.textContent.length === 0) return;
+        pushDataToArray();
+        if(currentOperator === 'plus') sum();
+        if(currentOperator === 'minus') difference();
+        if(currentOperator === 'times') product();
+        if(currentOperator === 'divide') quotient();
+        if(currentOperator === 'modulo') mod();
+        removeDataFromArray();
+        calculateData();
+        checkIfEmpty();
+    }
 }
+
+function disableOperationalBtns() {
+    add.disabled = true;
+    add.style['pointerEvents'] = 'none';
+    sub.disabled = true;
+    sub.style['pointerEvents'] = 'none';
+    multiply.disabled = true;
+    multiply.style['pointerEvents'] = 'none';
+    divide.disabled = true;
+    divide.style['pointerEvents'] = 'none';
+    modulo.disabled = true;
+    modulo.style['pointerEvents'] = 'none';
+}
+
+function enableOperationalBtns() {
+    add.disabled = false;
+    add.style['pointerEvents'] = '';
+    sub.disabled = false;
+    sub.style['pointerEvents'] = '';
+    multiply.disabled = false;
+    multiply.style['pointerEvents'] = '';
+    divide.disabled = false;
+    divide.style['pointerEvents'] = '';
+    modulo.disabled = false;
+    modulo.style['pointerEvents'] = '';
+}
+
+function checkIfEmpty() {
+    if (currentResult.textContent.length === 0) {
+        disableOperationalBtns();
+    } else {
+        enableOperationalBtns();
+    }
+}
+
+checkIfEmpty();
