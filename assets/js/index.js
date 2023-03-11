@@ -12,7 +12,7 @@ const divide = document.querySelector("#quotient");
 const calculate = document.querySelector("#calculate");
 
 const dataCollector = [];
-let recentOperator, currentOperator;
+let recentOperator = undefined, currentOperator = undefined;
 
 buttons.forEach(button => {
     button.addEventListener("click", (e) => {
@@ -75,8 +75,8 @@ function clearResult() {
         dataCollector.shift();
     }
 
-    currentOperator = null;
-    recentOperator = null;
+    currentOperator = undefined;
+    recentOperator = undefined;
 }
 
 function del() {
