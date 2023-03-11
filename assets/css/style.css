@@ -13,8 +13,8 @@
 }
 
 .calculator-body {
-    height: 500px;
-    width: 350px;
+    max-height: 450px;
+    max-width: 350px;
     border: 2px solid black;
     border-radius: 25px;
     background-color: rgb(50, 49, 49);
@@ -22,22 +22,18 @@
 
 .result-container {
     margin: 10px;
+    margin-bottom: 15px;
     border: 2px solid black;
     border-radius: 8px;
     background-color: rgb(248, 245, 241);
     padding: 10px;
 }
 
-#recentResult {
-    text-align: right;
-    height: 30px;
-}
-
 #currentResult {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    height: 70px;
+    height: 40px;
     font-size: 30px;
     font-weight: 800;
 }
